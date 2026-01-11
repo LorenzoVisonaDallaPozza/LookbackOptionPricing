@@ -25,7 +25,7 @@ public class Tests {
 		//option parameters
 		double maturity = 1.0;		
 		double strike = 100.0;
-		int numberOfFixingsForDiscretelyMonitoredLookbacks = 100; // if = 1000 gives the same result of continuously monitored
+		int numberOfFixingsForDiscretelyMonitoredLookbacks = 1000; // if = 1000 gives the same result of continuously monitored
 
 
 		//time discretization parameters
@@ -114,7 +114,7 @@ public class Tests {
 		
 		
 		
-		ProcessModel ourBachelierModel = new BachelierModel(spotPrice, riskFreeRate, spotPrice*volatility);
+		ProcessModel ourBachelierModel = new BachelierModel(spotPrice, riskFreeRate, volatility);
 		MonteCarloAssetModel ourBachelierModelSimulation = new MonteCarloAssetModel(ourBachelierModel, ourDriver);
 		
 		

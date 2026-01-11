@@ -22,7 +22,7 @@ import net.finmath.plots.PlotablePoints2D;
 import net.finmath.time.TimeDiscretization;
 import net.finmath.time.TimeDiscretizationFromArray;
 
-public class ThirdTest {
+public class PlotTest {
 	
 	public static void main(String[] args) throws CalculationException, InterruptedException {
 		
@@ -56,8 +56,8 @@ public class ThirdTest {
 		MonteCarloBlackScholesModel blackScholesProcess = new MonteCarloBlackScholesModel(spotPrice, riskFreeRate, volatility, ourDriver);
 		
 		
-		final double maxNumberOfFixings = 1000.0; // Il limite superiore del tuo asse X
-		final double numberOfInitialPoints = 0.0; // Iniziamo senza punti
+		final double maxNumberOfFixings = 1000.0;
+		final double numberOfInitialPoints = 0.0;
 		
 		final double[] timeStepState = new double [200];
 		final double[] optionPrices = new double [200];
@@ -88,19 +88,19 @@ public class ThirdTest {
 		
 		
 		final Plot2D lookbackPlot = new Plot2D(
-				0.0, // X min (N=0)
-			    maxNumberOfFixings, // X max (N=1000)
-			    0, // Qui non serve numberOfPlottedValues, useremo PlotablePoints
-			    Arrays.asList() // Iniziamo con una lista vuota di elementi plottabili
+				0.0,
+			    maxNumberOfFixings,
+			    0,
+			    Arrays.asList()
 			);
 
-			// AGGIUNGI QUESTO BLOCCO: Imposta gli assi e mostra la finestra
-			final double maxOptionPrice = continuoslyMonitoredCallFixedStrike.getValue(blackScholesProcess); // Stima massima realistica, adatta se necessario
+			
+			final double maxOptionPrice = continuoslyMonitoredCallFixedStrike.getValue(blackScholesProcess);
 
 			lookbackPlot.setXAxisLabel("Number of monitoring times");
 			lookbackPlot.setYAxisLabel("MC price of the Lookback fixed call");
 			lookbackPlot.setYRange(9, maxOptionPrice+5); 
-			lookbackPlot.show(); // <-- QUESTA RIGA APRE LA FINESTRA DEL GRAFICO!
+			lookbackPlot.show(); 
 		
 		while (timeSteps < 1006) {
 
@@ -109,18 +109,16 @@ public class ThirdTest {
 			double lookbackPrice = discretelyMonitoredCallFixedStrike.getValue(blackScholesProcess);
 			
 			if (index >= timeStepState.length) {
-		        // Interrompi il ciclo se i vettori sono pieni
 		        System.out.println("Raggiunto il limite di punti plottabili.");
 		        break; 
 		    }
 			
-			// 3. Salvataggio dei Dati
-		    timeStepState[index] = (double)timeSteps; // Asse X: Numero di Fixings (N)
-		    optionPrices[index] = lookbackPrice;      // Asse Y: Prezzo V(N)
+		    timeStepState[index] = (double)timeSteps;
+		    optionPrices[index] = lookbackPrice;
 
-		    // 4. PREPARAZIONE E AGGIORNAMENTO DEL PLOT DINAMICO
 		    
-		    // a) Crea i vettori 'slice' contenenti solo i dati validi (da 0 a index)
+		    
+		    
 		    final double[] currentXData = IntStream.range(0, index + 1)
 		                                           .mapToDouble(i -> timeStepState[i])
 		                                           .toArray();
@@ -129,8 +127,6 @@ public class ThirdTest {
 		                                           .toArray();
 
 		    
-		    
-		    // c) Crea l'oggetto Plotable2D usando il metodo statico .of()
 		    final PlotablePoints2D pointsSeries = PlotablePoints2D.of(
 		        "Prezzo MC Lookback", 
 		        currentXData,         
@@ -138,15 +134,15 @@ public class ThirdTest {
 		        null
 		    );
 
-		    // d) Aggiorna il grafico
+		   
 		    final List<Plotable2D> plotables = Arrays.asList(pointsSeries, mCPriceLine, analyticPriceLine);
 		    lookbackPlot.update(plotables);
 		    
-		    // 5. Incremento e Pausa
+		  
 		    timeSteps += 10;
 		    index++;
 		    
-		    // Pausa per visualizzare l'animazione (e.g., 50ms)
+		   
 		    Thread.sleep(100); 
 		}
 		

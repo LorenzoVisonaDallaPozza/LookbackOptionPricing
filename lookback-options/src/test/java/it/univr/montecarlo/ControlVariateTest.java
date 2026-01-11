@@ -12,7 +12,7 @@ import net.finmath.time.TimeDiscretization;
 import net.finmath.time.TimeDiscretizationFromArray;
 import net.finmath.stochastic.RandomVariable;
 
-public class SecondTest {
+public class ControlVariateTest {
 
 	public static void main(String[] args) throws CalculationException {
 		//model parameters
