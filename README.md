@@ -1,4 +1,5 @@
 # Lookback Option Pricing: Monte Carlo & Analytic
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > **Project developed for the "Computational Methods for Finance" course at Università di Verona.**
 
