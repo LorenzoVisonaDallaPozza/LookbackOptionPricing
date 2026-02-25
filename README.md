@@ -40,3 +40,6 @@ The project follows the standard Maven directory structure:
 
 ## References
 * Broadie, M., Glasserman, P., & Kou, S. G. (1999). Connecting discrete and continuous path-dependent options. *Finance and Stochastics*, 3, 55-82.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
