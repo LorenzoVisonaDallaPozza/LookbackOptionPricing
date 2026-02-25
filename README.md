@@ -1,8 +1,6 @@
 # Lookback Option Pricing: Monte Carlo & Analytic
 
 > **Project developed for the "Computational Methods for Finance" course at Università di Verona.**
->
-> **⚠️ Status:** *Code Complete & Submitted - Pending Academic Review.*
 
 ## Project Overview
 This Java project focuses on the valuation of **Lookback Options**, exotic derivatives whose payoff depends on the maximum or minimum asset price observed during the option's life.
